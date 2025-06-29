@@ -123,3 +123,50 @@ SELECT * FROM students WHERE email IS NULL;
 
 -- COALESCE() = return the first non-null value from the list of values
 select COALESCE(email, 'No Email Provided') as "Email" from students;
+
+-- m ultiple or condition
+
+select * from students
+where country= 'USA' or country = 'Canada' or country = 'UK';
+
+-- or we can use IN operator
+select * from students where country in ('USA','UK','Canada');
+
+-- NOT IN operator
+select * from students 
+where country not in ('USA','UK','Canada');
+
+--between operator
+select * from students 
+where age between 19 and 21;
+
+select * from students 
+where dob BETWEEN '2000-01-01' AND '2003-12-31';
+
+-- LIKE operator  -- case insensitive
+-- used for pattern matching in strings 
+
+-- % = zero or more characters
+-- _ = single character   
+
+select * from students
+where first_name LIKE 'A%'; -- starts with A
+
+select * from students
+where first_name LIKE '%a'; -- ends with a
+select * from students
+where first_name LIKE '%a%'; -- contains a
+
+select * from students
+where first_name LIKE '_a%'; -- second character is a
+
+select * from students
+where first_name LIKE 'A__'; -- starts with A and has two characters after A
+
+-- NOT LIKE operator
+select * from students
+where first_name NOT LIKE 'A%'; -- does not start with A
+
+-- ILIKE operator  -- case insensitive
+select * from students
+where first_name ILIKE 'a%'; -- case insensitive, does not start with A 
