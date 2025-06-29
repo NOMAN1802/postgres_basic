@@ -170,3 +170,25 @@ where first_name NOT LIKE 'A%'; -- does not start with A
 -- ILIKE operator  -- case insensitive
 select * from students
 where first_name ILIKE 'a%'; -- case insensitive, does not start with A 
+
+-- LIMIT operator
+-- used to limit the number of rows returned by a query 
+
+select * from students LIMIT 5; -- limit the number of rows returned
+
+select * from students where country in ('USA','UK','Canada') LIMIT 5; -- limit the number of rows returned with condition
+-- OFFSET operator
+-- used to skip a number of rows before starting to return rows from the query
+select * from students LIMIT 5 OFFSET 5 * 0; -- skip the first 5 rows and return the next 5 rows
+select * from students LIMIT 5 OFFSET 5 * 1; -- skip the first 10 rows and return the next 5 rows
+select * from students LIMIT 5 OFFSET 5 * 2; -- skip the first 15 rows and return the next 5 rows     
+-- OFFSET without LIMIT
+select * from students OFFSET 5; -- skip the first 5 rows and return all the remaining rows 
+
+-- delete data
+DELETE from student;
+
+select * FROM students where country = 'USA';
+
+DELETE from students
+ WHERE grade = 'B' and country = 'USA'  ;
