@@ -1,5 +1,4 @@
 -- create a table
-
 create table students (
     student_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
@@ -40,11 +39,9 @@ VALUES
 ('Lucas', 'Nelson', 18, 'A', 'Music', 'lucas.nelson@example.com', 'AB-', '2006-09-01', 'Norway'),
 ('Harper', 'Carter', 20, 'A', 'Design', 'harper.carter@example.com', 'O+', '2004-12-29', 'Netherlands');
 
-
 INSERT INTO students(first_name, last_name, age, grade, course, email, dob, blood_group, country) VALUES
 ('Ethan', 'Reed', 21, 'B', 'Geography', NULL, '2003-10-05', 'A+', 'Sweden'),
 ('Abigail', 'Murphy', 19, 'C', 'Psychology', NULL, '2005-02-18', 'B-', 'Denmark');
-
 
 -- show all data
 SELECT * FROM students;
@@ -60,7 +57,6 @@ SELECT email as "student email", last_name as "name "FROM students;
 SELECT * FROM students ORDER BY first_name ASC;
 
 SELECT * FROM students ORDER BY age DESC;
-
 
 -- DISTINCT = remove duplicate values
 
@@ -188,7 +184,17 @@ select * from students OFFSET 5; -- skip the first 5 rows and return all the rem
 -- delete data
 DELETE from student;
 
-select * FROM students where country = 'USA';
-
+SELECT * FROM students ORDER BY student_id ASC;
+-- delete specific student
 DELETE from students
  WHERE grade = 'B' and country = 'USA'  ;
+
+-- update data
+UPDATE students
+ set email = 'default@mail.com'
+ where email is NULL;
+
+-- update specific student
+ UPDATE students
+  set grade = 'A'
+  where last_name = 'King';
