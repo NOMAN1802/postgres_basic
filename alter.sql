@@ -38,8 +38,6 @@ ALTER table person2
   -- drop the entire table
 
   DROP table person2;
-
-
   -- delete the table recorde-  row but table structure will be same 
 
 truncate table person2;

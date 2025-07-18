@@ -3,14 +3,28 @@ create table "user"(
     username VARCHAR(25) NOT NULL
 );
 
-
+-- On delete cascade
 create table post(
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
-    user_id INTEGER REFERENCES "user"(id)
+    user_id INTEGER REFERENCES "user"(id) ON DELETE CASCADE
 )
 
+-- on delete set null
 
+CREATE Table post(
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    user_id INTEGER REFERENCES "user"(id) ON DELETE SET NULL    
+);
+
+
+--On delete set default
+CREATE TABLE post (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    user_id INTEGER REFERENCES "user"(id) ON DELETE SET DEFAULT DEFAULT 2
+);
 alter Table post
     alter COLUMN user_id
     SET NOT NULL;
@@ -28,3 +42,21 @@ insert into post (title, user_id
 ('Nodi"s wishdom always leave me inspire', 4);
 
 
+-- Insertion constraint on INSERT post
+-- Atempting to insert a post with a user id that does not exist in the "user" table will result in an error.
+-- Inserting a post with a valid user id that exists in the "user" table will succeed.
+-- Attempting to insert a post without specifing a user id.
+
+
+DELETE FROM "user"
+ WHERE id = 4;
+
+ DROP TABLE post;
+ DROP Table "user";
+
+
+-- Deletion constraint on delete user
+-- Restrict Deletion --> ON DELETE RESTRICT / ON DELETE NO ACTION(default behavior)
+-- Cascade Deletion --> ON DELETE CASCADE
+-- Set Default value --> ON DELETE SET DEFAULT
+-- Set Null value --> ON DELETE SET NULL
