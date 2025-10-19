@@ -36,8 +36,8 @@ VALUES
 ('Charlotte', 'Green', 19, 'A', 'Anthropology', 'charlotte.green@example.com', 'O-', '2005-06-09', 'New Zealand'),
 ('Benjamin', 'Adams', 20, 'A', 'Law', 'benjamin.adams@example.com', 'A-', '2004-03-03', 'Canada'),
 ('Amelia', 'Baker', 21, 'B', 'Political Science', 'amelia.baker@example.com', 'B+', '2003-05-25', 'UK'),
-('Lucas', 'Nelson', 18, 'A', 'Music', 'lucas.nelson@example.com', 'AB-', '2006-09-01', 'Norway'),
-('Harper', 'Carter', 20, 'A', 'Design', 'harper.carter@example.com', 'O+', '2004-12-29', 'Netherlands');
+('Lucas', 'Nelson', 18, 'A', 'Music', NULL, 'AB-', '2006-09-01', 'Norway'),
+('Harper', 'Carter', 20, 'A', 'Design', NULL, 'O+', '2004-12-29', 'Netherlands');
 
 INSERT INTO students(first_name, last_name, age, grade, course, email, dob, blood_group, country) VALUES
 ('Ethan', 'Reed', 21, 'B', 'Geography', NULL, '2003-10-05', 'A+', 'Sweden'),
@@ -82,45 +82,54 @@ where country = 'USA'  OR country = 'Australia';
 SELECT * from students
 where (country = 'USA'  OR country = 'Australia') AND age = 20;
 
--- filter out students from USA
-select * from students ag
+-- filter out students from USA <> == not equal
+select * from students 
 where country <> 'USA';
 
+--scalar function
 --function
 -- upper() = convert string to uppercase
 SELECT upper(first_name) as Name_in_uppercase, * FROM students;
 
+--scalar function
 -- concat() = concatenate two or more strings - scalar function
 SELECT concat(first_name, ' ', last_name) as "Full Name" from students;
 
+--scalar function
+-- length() = find the length of a string 
 select length(first_name) from students;
 
 -- aggregate function
 -- count() = count the number of rows
 SELECT count(*) as "Total Students" FROM students;
+
+-- aggregate function
 -- count() with condition
 SELECT avg(age) as avrage_age FROM students;
 
+-- aggregate function
 -- max() = find the maximum valu
 SELECT max(age) as "Oldest Student" FROM students;
 
+-- aggregate function
 -- min() = find the minimum value
 SELECT min(age) as "Youngest Student" FROM students;
 
 -- combine aggregate function with scalar function
 select max(length(first_name)) from students;
 
--- When we compare somthing with NULL, it will return NULL
+-- When we compare somthing with NULL, it will always return NULL
 
 SELECT * FROM students
-s WHERE email = NULL;
--- so we need to use IS NULL or IS NOT NULL
+WHERE email = NULL;
+
+-- so we need to use (IS -> OPERATOR) IS NULL or IS NOT NULL
 SELECT * FROM students WHERE email IS NULL;
 
 -- COALESCE() = return the first non-null value from the list of values
 select COALESCE(email, 'No Email Provided') as "Email" from students;
 
--- m ultiple or condition
+-- multiple or condition
 
 select * from students
 where country= 'USA' or country = 'Canada' or country = 'UK';
@@ -137,9 +146,9 @@ select * from students
 where age between 19 and 21;
 
 select * from students 
-where dob BETWEEN '2000-01-01' AND '2003-12-31';
+where dob BETWEEN '2001-01-01' AND '2004-12-31';
 
--- LIKE operator  -- case insensitive
+-- LIKE operator  -- case SENSATIVE
 -- used for pattern matching in strings 
 
 -- % = zero or more characters
@@ -182,7 +191,8 @@ select * from students LIMIT 5 OFFSET 5 * 2; -- skip the first 15 rows and retur
 select * from students OFFSET 5; -- skip the first 5 rows and return all the remaining rows 
 
 -- delete data
-DELETE from student;
+
+DELETE from students;
 
 SELECT * FROM students ORDER BY student_id ASC;
 -- delete specific student

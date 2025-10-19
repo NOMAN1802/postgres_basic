@@ -65,5 +65,61 @@ INNER JOIN departments as d on e.depertment_id = d.department_id;
 
 
 -- Show dept name and avarage salary
-select  from employees as e
- join departments as d USING(department_id);
+select d.department_name, round(AVG(e.salary)) AS average_salary
+from employees as e
+ join departments as d ON e.depertment_id = d.department_id
+GROUP BY d.department_name;
+
+-- Count of employees in each department
+select d.department_name, COUNT(e.employee_id) AS employee_count
+from employees as e
+ join departments as d ON e.depertment_id = d.department_id
+GROUP BY d.department_name
+ORDER BY employee_count DESC;
+
+--Find the department name with the highest average salary--
+
+SELECT department_name, round(avg(salary)) as avg_salary 
+FROM employees JOIN departments ON employees.depertment_id = departments.department_id
+GROUP BY department_name
+ORDER BY avg_salary DESC
+LIMIT 1;
+
+
+--count employee hired each year
+
+select extract(year from hire_date) as hire_year, count(*) from employees
+ GROUP BY hire_year;
+
+ CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10, 2)
+);
+
+ INSERT INTO orders (customer_id, order_date, total_amount) VALUES
+(1, '2022-01-05', 100.50),
+(2, '2022-01-07', 200.75),
+(3, '2022-01-10', 150.25),
+(4, '2022-01-15', 300.80),
+(5, '2022-01-20', 180.90),
+(3, '2022-01-25', 90.00),
+(2, '2022-02-01', 120.75),
+(3, '2022-02-01', 250.50),
+(1, '2022-02-05', 180.25),
+(1, '2023-03-05', 180.25);
+
+DROP TABLE orders;
+SELECT * FROM orders;
+
+-- Find customers who have placed more than two orders and calculate the total amount spent by each of these customers.
+
+select customer_id ,count(*),round(avg(total_amount)) as avg_amount from orders
+ GROUP BY customer_id
+ HAVING count(*) > 2;
+
+ -- Find the total amount of prder placed each month in year2022
+ SELECT extract(month from order_date) as month, sum(total_amount) 
+ FROM orders WHERE extract(year from order_date) = 2022
+GROUP BY month;

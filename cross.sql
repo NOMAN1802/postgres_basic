@@ -27,3 +27,5 @@ SELECT * FROM employees CROSS JOIN depertments;
 --Natural join
 SELECT * FROM employees NATURAL JOIN depertments;
 
+drop table employees;
+drop table depertments;

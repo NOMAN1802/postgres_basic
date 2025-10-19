@@ -1,4 +1,4 @@
--- Active: 1751093441853@@127.0.0.1@5432@ph
+-- Active: 1760717065858@@127.0.0.1@5432@ph
 SELECT * from person2;
 
 ALTER TABLE person2
@@ -37,8 +37,10 @@ ALTER table person2
 
   -- drop the entire table
 
-  DROP table person2;
-  -- delete the table recorde-  row but table structure will be same 
+  DROP table students;
+
+
+-- delete the table recorde-  row but table structure will be same 
 
 truncate table person2;
 

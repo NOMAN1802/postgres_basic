@@ -1,7 +1,7 @@
 create table "user"(
     id SERIAL PRIMARY KEY,
     username VARCHAR(25) NOT NULL
-);
+); 
 
 -- On delete cascade
 create table post(

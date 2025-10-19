@@ -32,9 +32,12 @@ select to_char(now(), 'D'); -- day of the week (1-7, where 1 is Sunday)
 select CURRENT_DATE - INTERVAL '1 year'; -- 1 year ago
 select CURRENT_DATE + INTERVAL '1 year'; -- 1 year 
 
-select age(CURRENT_DATE, '1994-05-17'); -- age from a specific date
+select age(CURRENT_DATE, '1994-5-17'); -- age from a specific date
 
 select *, age(current_date,dob) from students;
+-- extract parts of date
+select extract(day from now()::date); -- extract day from current date
+select extract(month from now()::date); -- extract month from current date
 
 SELECT extract(year from '1994-05-17'::date); -- extract year from date
 SELECT extract(month from '1994-05-17'::date); -- extract month from date   
